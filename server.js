@@ -3,6 +3,8 @@ const express = require('express'),
       fs      = require('fs'),
       app     = express();
 
+// Port for server running
+const port = process.env.PORT || 3000;
 
 app.set('view engine','hbs');
 app.use(express.static(__dirname + '/public'));
@@ -23,9 +25,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.render('maintenance');
-});
+// app.use((req, res, next) => {
+//   res.render('maintenance');
+// });
 
 // Routes
 app.get('/', (req, res) => {
@@ -47,6 +49,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server run in port 3000');
+app.listen(port, () => {
+  console.log(`Server run in port ${port}`);
 });
